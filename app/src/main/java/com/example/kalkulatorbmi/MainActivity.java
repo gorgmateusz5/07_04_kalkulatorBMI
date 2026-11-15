@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     private void calculateBMI() {
 
         if (!validateForm()) {
@@ -98,7 +99,25 @@ public class MainActivity extends AppCompatActivity {
 
         double bmi = weight / (height * height);
 
-        tvResult.setText("Twoje BMI: " + bmi);
+        String category;
+
+        if (bmi < 18.5) {
+            category = "Niedowaga";
+        } else if (bmi < 25) {
+            category = "Prawidlowa masa ciala";
+        } else if (bmi < 30) {
+            category = "Nadwaga";
+        } else {
+            category = "Otylosc";
+        }
+
+        tvResult.setText(String.format(
+                java.util.Locale.US,
+                "Twoje BMI: %.2f\nKategoria: %s",
+                bmi,
+                category
+        ));
     }
+
 
 }
